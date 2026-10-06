@@ -1,0 +1,32 @@
+# Netlify headers. Docs: https://docs.netlify.com/routing/headers/
+
+# Security + privacy headers on every page
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), interest-cohort=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  # If you add analytics or another third-party script, allow its domain in script-src / connect-src.
+  # If you use Netlify Forms instead of Formspree, you can remove the formspree.io entries.
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; media-src 'self'; connect-src 'self' https://formspree.io; form-action 'self' https://formspree.io; base-uri 'self'; frame-ancestors 'none'
+
+# Pages: always revalidate so edits go live straight away
+/
+  Cache-Control: public, max-age=0, must-revalidate
+/*.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# CSS and JS are not fingerprinted, so keep the cache short
+/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# Images and video: cache for a week. Swapped files appear within 7 days,
+# or immediately if you rename them (e.g. hero-v2.mp4).
+/assets/*
+  Cache-Control: public, max-age=604800
+/assets/video/*
+  Cache-Control: public, max-age=604800
+  Accept-Ranges: bytes
