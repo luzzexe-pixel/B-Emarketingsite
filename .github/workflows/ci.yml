@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: JavaScript syntax
+        run: node --check js/main.js
+
+      - name: Site checks (JSON-LD, links, ids)
+        run: node scripts/check.mjs
+
+      - name: HTML validation
+        run: npx --yes html-validate@9 index.html privacy.html
