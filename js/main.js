@@ -59,8 +59,9 @@
   /* ---------- Headline: split into words for the reveal ---------- */
   $$('[data-words]').forEach(el => {
     const words = el.textContent.trim().split(/\s+/);
-    el.setAttribute('aria-label', el.textContent.trim());
-    el.innerHTML = words.map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}"><i>${w}</i></span>`).join(' ');
+    const text = el.textContent.trim();
+    el.innerHTML = `<span class="sr-only">${text}</span>` +
+      words.map((w, i) => `<span class="w" aria-hidden="true" style="--i:${i}"><i>${w}</i></span>`).join(' ');
   });
 
   /* ---------- Stagger children, then reveal on scroll ---------- */

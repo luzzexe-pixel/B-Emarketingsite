@@ -72,6 +72,8 @@ h3 { font-size: 1.3rem; letter-spacing: -.02em; line-height: 1.2; }
 .eyebrow::before { content: ""; width: 1.6rem; height: 1px; background: currentColor; }
 .note { font-size: .85rem; color: var(--muted); border-left: 2px solid var(--accent); padding-left: .75rem; }
 
+.sr-only { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+
 /* ---------- Buttons ---------- */
 .btn {
   --pad-x: 1.4rem;
