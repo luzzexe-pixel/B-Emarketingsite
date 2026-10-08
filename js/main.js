@@ -141,6 +141,19 @@
     }
   }
 
+  /* ---------- Section films: load only when near the screen, play only while visible ---------- */
+  $$('.film__video').forEach(v => {
+    const conn = navigator.connection || {};
+    if (reduced || conn.saveData || !('IntersectionObserver' in window)) return; // poster only
+    let loaded = false;
+    new IntersectionObserver(([en]) => {
+      if (en.isIntersecting) {
+        if (!loaded) { loaded = true; $$('source', v).forEach(s => { s.src = s.dataset.src; }); v.load(); }
+        v.play().then(() => v.classList.add('is-playing')).catch(() => {});
+      } else v.pause();
+    }, { rootMargin: '200px 0px', threshold: 0 }).observe(v);
+  });
+
   /* ---------- Magnetic buttons + card spotlight (mouse/trackpad only) ---------- */
   if (finePointer) {
     $$('[data-magnetic]').forEach(btn => {

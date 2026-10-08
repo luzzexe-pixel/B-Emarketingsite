@@ -381,3 +381,10 @@ h3 { font-size: 1.3rem; letter-spacing: -.02em; line-height: 1.2; }
   .scroll-cue span { animation: none; opacity: 1; }
   .card:hover { transform: none; }
 }
+
+/* Section film (How we work) */
+.film { position: relative; margin: 0 0 clamp(2.2rem, 5vw, 3.5rem); aspect-ratio: 21 / 9; border-radius: 24px; overflow: hidden; border: 1px solid var(--line); background: #0a080c; }
+.film__video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.film::after { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit;
+  background: linear-gradient(180deg, rgba(8, 7, 10, .25), transparent 25%, transparent 75%, rgba(8, 7, 10, .45)); box-shadow: inset 0 0 0 1px rgba(198, 255, 61, .08); }
+@media (max-width: 699px) { .film { aspect-ratio: 4 / 3; border-radius: 18px; } }
