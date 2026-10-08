@@ -114,6 +114,8 @@
     } else {
       const mobile = matchMedia('(max-width: 767px)').matches;
       if (mobile && video.dataset.posterMobile) video.poster = video.dataset.posterMobile;
+      // Not every browser honours <source media>, so keep only the sources for this screen size
+      $$('source', video).forEach(s => { if (!!s.media !== mobile) s.remove(); });
       const start = () => {
         video.load();
         const p = video.play();

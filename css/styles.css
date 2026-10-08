@@ -137,6 +137,7 @@ h3 { font-size: 1.3rem; letter-spacing: -.02em; line-height: 1.2; }
 .hero__media video { width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 1.2s ease; }
 .hero__media video.is-playing { opacity: 1; }
 .hero__shade { position: absolute; inset: 0; background:
+  linear-gradient(90deg, rgba(8, 7, 10, .7) 0%, rgba(8, 7, 10, .35) 45%, transparent 70%),
   linear-gradient(180deg, rgba(8, 7, 10, .55) 0%, rgba(8, 7, 10, .25) 40%, var(--bg) 100%),
   radial-gradient(70% 60% at 85% 20%, rgba(var(--red), .16), transparent 65%); }
 .hero__content { display: grid; gap: 1.6rem; justify-items: start; }
