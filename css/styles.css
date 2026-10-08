@@ -250,6 +250,24 @@ h3 { font-size: 1.3rem; letter-spacing: -.02em; line-height: 1.2; }
 .badge { position: absolute; top: 1.2rem; right: 1.2rem; padding: .35rem .75rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); font: 600 .7rem/1 var(--font-body); letter-spacing: .08em; text-transform: uppercase; }
 
 /* Testimonials */
+/* Our promise (inside How we work) */
+.promise { position: relative; margin-top: clamp(3.5rem, 8vw, 6rem); padding: clamp(2rem, 5vw, 3.5rem); border: 1px solid var(--line); border-radius: 28px; overflow: hidden; isolation: isolate;
+  background: radial-gradient(60% 90% at 100% 0%, rgba(198, 255, 61, .14), transparent 60%), radial-gradient(50% 70% at 0% 100%, rgba(var(--red), .12), transparent 65%), var(--surface); }
+.promise::after { content: ""; position: absolute; inset: 0; z-index: -1; opacity: .5; pointer-events: none;
+  background-image: linear-gradient(rgba(255, 255, 255, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, .04) 1px, transparent 1px); background-size: 48px 48px;
+  -webkit-mask-image: radial-gradient(80% 80% at 100% 0%, #000, transparent); mask-image: radial-gradient(80% 80% at 100% 0%, #000, transparent); }
+.promise__head { display: grid; gap: .8rem; margin-bottom: clamp(1.8rem, 4vw, 2.6rem); }
+.promise__title { font: 700 clamp(2rem, 5vw, 3.4rem)/1 var(--font-display); letter-spacing: -.04em; }
+.promises { display: grid; gap: 1rem; }
+@media (min-width: 700px) { .promises { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1100px) { .promises { grid-template-columns: repeat(4, 1fr); } }
+.promise__item { padding: 1.6rem 1.5rem; display: flex; flex-direction: column; gap: .7rem; }
+.promise__item h4, .promise__item p { margin: 0; }
+.promise__item svg { margin-bottom: .5rem; }
+.promise__item svg { width: 44px; height: 44px; padding: 10px; border-radius: 12px; background: rgba(198, 255, 61, .12); fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.promise__item h4 { font: 600 1.15rem/1.25 var(--font-display); letter-spacing: -.01em; }
+.promise__item p { color: var(--muted); font-size: .95rem; }
+
 .quotes { display: grid; gap: 1.2rem; }
 @media (min-width: 900px) { .quotes { grid-template-columns: repeat(3, 1fr); } }
 .quote { padding: 2rem 1.8rem; display: grid; gap: 1.2rem; align-content: space-between; }
