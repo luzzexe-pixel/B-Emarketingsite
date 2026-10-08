@@ -286,6 +286,12 @@ h3 { font-size: 1.3rem; letter-spacing: -.02em; line-height: 1.2; }
 .faq summary:hover { color: var(--accent); }
 .faq details p { color: var(--muted); padding: 0 3rem 1.5rem 0; max-width: 62ch; }
 .faq details[open] p { animation: fade .5s var(--ease); }
+.faq details p:has(+ .faq__list) { padding-bottom: .7rem; }
+.faq__list { display: grid; gap: .45rem; padding: 0 3rem 1rem 0; color: var(--muted); }
+.faq__list li { position: relative; padding-left: 1.2rem; }
+.faq__list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+.faq__list strong { color: var(--text); font-weight: 600; }
+.faq details[open] .faq__list { animation: fade .5s var(--ease); }
 @keyframes fade { from { opacity: 0; transform: translateY(-6px); } }
 
 /* Contact */
