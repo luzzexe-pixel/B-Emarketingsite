@@ -74,6 +74,14 @@ The banner follows UK PECR / UK GDPR: Accept and Reject are equally prominent, a
 - Below-the-fold sections use `content-visibility: auto`, and the video is deferred. The only render-blocking asset is the Google Fonts stylesheet (`display=swap`).
 - Animations use only `transform` and `opacity`.
 
-## Deploying
+## Deploying (Netlify)
 
-Upload the folder to any static host (Netlify, Vercel, Cloudflare Pages, GitHub Pages, or standard web hosting).
+`netlify.toml` and `_headers` are already set up.
+
+1. In Netlify choose **Add new site → Import from GitHub** and pick this repository (branch `main`).
+2. Leave the build settings as detected: the build command copies only the public site files into `dist/`, which is published. Repo tooling (`.claude/`, `scripts/`) is never published.
+3. Deploy. Every merge to `main` redeploys automatically.
+
+`_headers` adds security headers (including a Content-Security-Policy), and sets caching: HTML always revalidates, CSS/JS cache for 1 hour, images and video for 7 days (rename a swapped file, e.g. `hero-v2.mp4`, to bypass the cache). **If you add analytics or another third-party script, add its domain to `script-src` / `connect-src` in `_headers`.**
+
+Any other static host also works. Upload the files listed in the build command.
