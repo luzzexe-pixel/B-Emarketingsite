@@ -141,18 +141,42 @@
     }
   }
 
-  /* ---------- Section films: load only when near the screen, play only while visible ---------- */
-  $$('.film__video').forEach(v => {
-    const conn = navigator.connection || {};
-    if (reduced || conn.saveData || !('IntersectionObserver' in window)) return; // poster only
-    let loaded = false;
-    new IntersectionObserver(([en]) => {
-      if (en.isIntersecting) {
-        if (!loaded) { loaded = true; $$('source', v).forEach(s => { s.src = s.dataset.src; }); v.load(); }
-        v.play().then(() => v.classList.add('is-playing')).catch(() => {});
-      } else v.pause();
-    }, { rootMargin: '200px 0px', threshold: 0 }).observe(v);
-  });
+  /* ---------- Selected work: demo videos (hover to play on desktop, tap on touch) ---------- */
+  const demos = $$('.demo');
+  if (demos.length) {
+    const canHover = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const stop = (d, rewind) => {
+      const v = $('video', d); v.pause(); d.classList.remove('is-playing');
+      if (rewind) v.currentTime = 0;
+      $('.demo__play', d).setAttribute('aria-label', `Play the ${$('.demo__label', d).textContent.toLowerCase()} website demo`);
+    };
+    const play = d => {
+      demos.forEach(o => { if (o !== d && o.classList.contains('is-playing')) stop(o, false); });
+      const v = $('video', d);
+      v.play().then(() => {
+        d.classList.add('is-playing');
+        $('.demo__play', d).setAttribute('aria-label', `Pause the ${$('.demo__label', d).textContent.toLowerCase()} website demo`);
+      }).catch(() => {});
+    };
+    const toggle = d => d.classList.contains('is-playing') ? stop(d, false) : play(d);
+    demos.forEach(d => {
+      $('.demo__play', d).addEventListener('click', e => { e.stopPropagation(); toggle(d); });
+      if (canHover && !reduced) {
+        d.addEventListener('mouseenter', () => { if (!reduced) play(d); });
+        d.addEventListener('mouseleave', () => stop(d, true));
+      } else {
+        $('.demo__media', d).addEventListener('click', () => toggle(d));
+      }
+    });
+    // Pause anything that scrolls out of view
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(es => es.forEach(en => {
+        if (!en.isIntersecting && en.target.classList.contains('is-playing')) stop(en.target, false);
+      }), { threshold: .25 });
+      demos.forEach(d => io.observe(d));
+    }
+    document.addEventListener('visibilitychange', () => { if (document.hidden) demos.forEach(d => d.classList.contains('is-playing') && stop(d, false)); });
+  }
 
   /* ---------- Magnetic buttons + card spotlight (mouse/trackpad only) ---------- */
   if (finePointer) {
@@ -179,6 +203,22 @@
   $$('[data-package]').forEach(a => a.addEventListener('click', () => {
     const sel = $('#service');
     if (sel) sel.value = a.dataset.package;
+  }));
+
+  /* ---------- "Request a Call" buttons: pre-fill the form with a call request ---------- */
+  $$('[data-call]').forEach(a => a.addEventListener('click', () => {
+    const msg = $('#message');
+    const pkg = a.dataset.package;
+    if (msg && (!msg.value.trim() || msg.dataset.prefilled === 'true')) {
+      msg.value = `Hi, I'd like to request a call to discuss pricing${pkg ? ` for the ${pkg}` : ''}. The best number and time to reach me is: `;
+      msg.dataset.prefilled = 'true';
+      msg.addEventListener('input', () => { msg.dataset.prefilled = 'false'; }, { once: true });
+    }
+    const phone = $('#phone');
+    if (phone) phone.required = true;
+    const phoneLabel = $('label[for="phone"] small');
+    if (phoneLabel) phoneLabel.textContent = '(so we can call you)';
+    setTimeout(() => $('#name')?.focus({ preventScroll: true }), reduced ? 0 : 700);
   }));
 
   /* ---------- Contact form ---------- */

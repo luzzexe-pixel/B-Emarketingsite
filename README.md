@@ -35,7 +35,7 @@ The video only starts after the page has loaded, pauses when scrolled away or th
 
 ## 2. Swap images
 
-- **Case study images:** each card has a `.case__media` element. Add your image with an inline style, e.g. `<div class="case__media case__media--1" style="--img:url(assets/img/work-1.jpg)" ...>`. Use 1200×750 WebP/JPEG, and add `role="img"` and a meaningful `aria-label`.
+- **Work demo videos:** the five cards in "Selected work" play `assets/video/work/{plumbing,kitchens,dentistry,roofing,furniture}.mp4` and show `assets/img/work/<same name>.jpg` as the still before playing. The files there now are labelled placeholders. Replace them keeping the same names: 16:10 landscape, 6–12 s, no audio, under 3 MB (e.g. `ffmpeg -i demo.mov -an -vf scale=1280:-2 -c:v libx264 -crf 26 -preset slow -movflags +faststart plumbing.mp4`), and grab a poster with `ffmpeg -ss 1 -i plumbing.mp4 -frames:v 1 plumbing.jpg`. Videos play on hover (desktop) or tap (phones).
 - **Social share image:** replace `assets/img/og-image.jpg` (1200×630).
 - **Favicon:** `assets/favicon.svg`.
 - **Logo:** `assets/logo.svg` is the standalone file. The header and footer use the same paths via the `<symbol id="logo">` block at the top of `index.html`.
