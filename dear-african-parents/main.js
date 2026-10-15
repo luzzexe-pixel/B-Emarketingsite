@@ -48,6 +48,7 @@
   } else items.forEach(el => el.classList.add("in"));
 
   // card game
+  if ($("#card")) (() => {
   const card = $("#card"), text = $("#cardText"), catEl = $("#cardCat"), live = $("#live"), count = $("#count");
   let cat = "all", deck = [], seen = 0, current = null, flipped = false;
   const shuffle = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
@@ -86,9 +87,11 @@
     } catch (_) {}
   });
 
+  })();
+
   // waitlist form (front-end only: connect to your email provider)
   const form = $("#form"), msg = $("#msg");
-  form.addEventListener("submit", e => {
+  if (form) form.addEventListener("submit", e => {
     e.preventDefault();
     const v = $("#email").value.trim();
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v)) { msg.textContent = "Please enter a valid email address."; $("#email").focus(); return; }
@@ -97,5 +100,5 @@
     form.reset();
   });
 
-  $("#yr").textContent = new Date().getFullYear();
+  if ($("#yr")) $("#yr").textContent = new Date().getFullYear();
 })();
