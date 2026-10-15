@@ -4,6 +4,21 @@
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   const finePointer = matchMedia("(hover: hover) and (pointer: fine)").matches;
 
+  // ---- Intro (plays on every visit, deliberately not skippable) ----
+  const intro = $("#intro"), root = document.documentElement;
+  const lock = on => $$("header, main, footer").forEach(el => { el.inert = on; });
+  const endIntro = () => {
+    if (!root.classList.contains("intro-on")) return;
+    root.classList.add("intro-out"); root.classList.remove("intro-on"); lock(false);
+    setTimeout(() => { root.classList.remove("intro-out", "intro-go"); intro && intro.remove(); }, 900);
+  };
+  if (intro && root.classList.contains("intro-on")) {
+    lock(true);
+    const img = intro.querySelector("img");
+    const ready = img && img.decode ? Promise.race([img.decode().catch(() => {}), new Promise(r => setTimeout(r, 1200))]) : Promise.resolve();
+    ready.then(() => { root.classList.add("intro-go"); setTimeout(endIntro, reduce ? 1600 : 4300); });
+  } else { lock(false); if (intro) intro.remove(); }
+
   // ---- Sample cards (edit freely) ----
   const CARDS = [
     ["Kitchen", "Who told you to open the fridge?"],

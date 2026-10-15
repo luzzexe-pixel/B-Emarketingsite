@@ -30,3 +30,7 @@ Essential cookies only until the visitor accepts. To add analytics, load the scr
 
 ## SEO
 Replace `example.com` in the canonical, Open Graph and schema URLs with your domain. Add `hello@example.com` and the social links to your real details.
+
+## Intro animation
+Plays on every visit and is deliberately not skippable (about 4.3s: box spins in, parents image slides in, Vambe Project name appears, then it fades into the hero). Markup is the `#intro` block at the top of `<body>`, styles are in the "intro animation" section of `styles.css`, timing is in `main.js` (`4300` ms) and the keyframe delays in `styles.css`. Visitors with reduced-motion set get a short, calm fade version instead.
+**Parents image:** currently loads from the Higgsfield CDN URL in the `<img>` inside `#intro`, with `assets/intro-parents.svg` as a fallback if it fails. For production, download the image, save it as `assets/intro-parents.jpg` (compress to under 150KB), and set the `src` to `assets/intro-parents.jpg`. Don't rely on the CDN link long-term.

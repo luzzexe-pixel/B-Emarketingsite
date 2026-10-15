@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Illustration of African parents (placeholder image)">
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1f4a85"/><stop offset=".55" stop-color="#2a2a63"/><stop offset="1" stop-color="#5a1f4e"/></linearGradient>
+<radialGradient id="sun" cx=".5" cy=".5" r=".5"><stop offset="0" stop-color="#e9a92e"/><stop offset="1" stop-color="#e0642f"/></radialGradient>
+<pattern id="k" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M20 3 37 20 20 37 3 20Z" fill="none" stroke="#e9a92e" stroke-opacity=".12" stroke-width="1.2"/></pattern>
+</defs>
+<rect width="480" height="600" fill="url(#bg)"/><rect width="480" height="600" fill="url(#k)"/>
+<circle cx="240" cy="250" r="150" fill="url(#sun)" opacity=".92"/>
+<!-- parent left -->
+<path d="M70 600V470C70 400 130 372 190 372S300 400 300 470V600Z" fill="#0b1b3b"/>
+<circle cx="185" cy="290" r="58" fill="#14264b"/>
+<path d="M120 270C120 205 160 180 195 180S255 205 252 262C230 238 160 238 120 270Z" fill="#e0642f"/>
+<path d="M132 252l16-26 16 26-16 26zM172 244l16-26 16 26-16 26zM212 250l16-26 16 26-16 26z" fill="#e9a92e" opacity=".9"/>
+<!-- parent right -->
+<path d="M230 600V495C230 435 280 410 338 410S440 440 440 500V600Z" fill="#0a1733"/>
+<circle cx="338" cy="338" r="50" fill="#16294f"/>
+<path d="M292 322C288 270 318 252 342 252S392 270 388 318C372 300 316 298 292 322Z" fill="#3e9c8a"/>
+<path d="M312 306l12-20 12 20-12 20zM346 304l12-20 12 20-12 20z" fill="#e9a92e" opacity=".9"/>
+<rect y="560" width="120" height="40" fill="#3e9c8a"/><rect x="120" y="560" width="120" height="40" fill="#8a3a22"/><rect x="240" y="560" width="120" height="40" fill="#e0642f"/><rect x="360" y="560" width="120" height="40" fill="#e9a92e"/>
+<text x="240" y="548" text-anchor="middle" font-family="Arial,sans-serif" font-size="12" letter-spacing="3" fill="#f6f1e7" fill-opacity=".8">PLACEHOLDER IMAGE: REPLACE WITH YOUR PARENTS PHOTO</text>
+</svg>
