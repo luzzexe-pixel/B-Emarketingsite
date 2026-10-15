@@ -236,3 +236,23 @@ form label{color:var(--teal-t)}
 @media(min-width:761px){.hero h1{max-width:11.5ch}.hero-stripes{width:36%}.hero .sub{max-width:40ch}}
 @media(min-width:761px){.hero-stripes{width:40%}}
 .nav{background:rgba(9,25,52,.72);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+
+/* ---- middle ground: navy flowing into wine ---- */
+:root{--wine:#4a1128;--wine-d:#2b0a1b;--navy-top:#0c2349}
+body{background:linear-gradient(180deg,var(--navy-top) 0%,#0b2145 14%,#1a1b3f 38%,#35142f 62%,var(--wine) 82%,var(--wine-d) 100%)}
+.section,.section.tint,#love,#preorder{background:none}
+.section.tint{background:linear-gradient(180deg,rgba(9,25,52,.0),rgba(9,25,52,.28))}
+#preorder{background:radial-gradient(70% 60% at 85% 100%,rgba(122,24,58,.55),transparent 70%)}
+.hero-shade{background:
+  radial-gradient(60% 55% at 8% 10%,rgba(31,74,133,.6),transparent 70%),
+  radial-gradient(55% 50% at 92% 100%,rgba(112,22,54,.55),transparent 70%),
+  linear-gradient(180deg,rgba(9,25,52,.2),rgba(11,33,69,.55) 90%,rgba(14,28,62,.9))}
+.marquee{background:rgba(9,25,52,.55)}
+.front{background:linear-gradient(160deg,#16396f,#3b1230 85%)}
+.steps li,.stat,.review{background:linear-gradient(160deg,rgba(31,74,133,.38),rgba(90,18,48,.28))}
+.tier{background:linear-gradient(170deg,rgba(14,35,72,.75),rgba(43,10,27,.75))}
+.tier.featured{background:linear-gradient(170deg,rgba(31,74,133,.7),rgba(94,20,52,.7))}
+.footer{background:var(--wine-d)}
+.nav,.nav.solid{background:rgba(14,28,62,.8)}
+.cookie{background:#1a1738;border-color:rgba(92,192,172,.5)}
+.faq details{border-color:rgba(246,241,231,.18)}
