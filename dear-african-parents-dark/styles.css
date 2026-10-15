@@ -3,7 +3,7 @@
   --teal:#3e9c8a;--teal-t:#5cc0ac;--orange:#e0642f;--orange-t:#f2824f;--rust:#8a3a22;
   --stripes:linear-gradient(90deg,var(--teal) 0 25%,var(--rust) 25% 50%,var(--orange) 50% 75%,var(--gold) 75% 100%);
   --txt:#f6f1e7;--mut:#c3cde0;--line:rgba(246,241,231,.16);
-  --disp:"Space Grotesk","Arial Black",system-ui,sans-serif;--sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --disp:"Playfair Display",Georgia,"Times New Roman",serif;--sans:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
   --ease:cubic-bezier(.2,.7,.2,1);
   --kente:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80'%3E%3Cg fill='none' stroke='%235cc0ac' stroke-width='1.2'%3E%3Cpath d='M40 6 74 40 40 74 6 40Z'/%3E%3Cpath d='M40 22 58 40 40 58 22 40Z'/%3E%3Cpath d='M0 0l10 10M80 0 70 10M0 80l10-10M80 80 70 70'/%3E%3C/g%3E%3C/svg%3E");
 }
@@ -256,3 +256,39 @@ body{background:linear-gradient(180deg,var(--navy-top) 0%,#0b2145 14%,#1a1b3f 38
 .nav,.nav.solid{background:rgba(14,28,62,.8)}
 .cookie{background:#1a1738;border-color:rgba(92,192,172,.5)}
 .faq details{border-color:rgba(246,241,231,.18)}
+
+/* ---- v4: lighter blue-keeping gradient, straight cards, Playfair + Inter ---- */
+:root{--wine:#3a1a4a;--wine-d:#241a4d}
+body{background:linear-gradient(180deg,#0c2349 0%,#0f2b5c 20%,#152f68 42%,#1f2c66 62%,#2d2a63 82%,#33275a 100%)}
+.hero-shade{background:
+  radial-gradient(60% 55% at 8% 10%,rgba(31,74,133,.6),transparent 70%),
+  radial-gradient(55% 50% at 92% 100%,rgba(96,28,70,.35),transparent 70%),
+  linear-gradient(180deg,rgba(9,25,52,.2),rgba(11,33,69,.55) 90%,rgba(14,28,62,.9))}
+#reviews{background:radial-gradient(75% 70% at 12% 15%,rgba(46,100,175,.38),transparent 70%)}
+#faq{background:radial-gradient(70% 70% at 88% 20%,rgba(46,100,175,.28),transparent 70%)}
+#preorder{background:radial-gradient(75% 65% at 10% 0%,rgba(46,100,175,.42),transparent 70%),radial-gradient(60% 60% at 90% 100%,rgba(122,30,80,.35),transparent 70%)}
+.section.tint{background:linear-gradient(180deg,rgba(9,25,52,0),rgba(14,36,78,.3))}
+.footer{background:#16275a}
+.steps li,.stat,.review{background:linear-gradient(160deg,rgba(46,100,175,.3),rgba(90,30,80,.2))}
+.tier{background:linear-gradient(170deg,rgba(20,48,100,.75),rgba(40,28,80,.7))}
+.tier.featured{background:linear-gradient(170deg,rgba(40,90,160,.7),rgba(100,30,80,.55))}
+.front{background:linear-gradient(160deg,#1a4382,#2d1d5a 90%)}
+.cookie{background:#12285a}
+/* sample cards: no tilt on hover, rigid grid */
+.flip:hover button:not([aria-pressed=true]){transform:none}
+.card-grid{align-items:stretch}
+.flip{transform:none!important}
+/* type */
+h1{font-weight:600;font-size:clamp(2.4rem,7vw,4.9rem);line-height:1.08;letter-spacing:-.015em}
+@media(min-width:761px){.hero h1{max-width:12ch}}
+h1 em{font-style:italic;font-weight:600}
+h2{font-weight:600;line-height:1.12;letter-spacing:-.01em}
+h3{font-weight:600;letter-spacing:0}
+.price,.stat b,.num,.front .big{font-variant-numeric:lining-nums;font-weight:700}
+.track,.review blockquote,.back p,.faq summary,.contact{letter-spacing:0}
+.track{font-weight:500;font-style:italic}
+.review blockquote{font-weight:500;line-height:1.5}
+body,button,input,select,textarea{font-family:var(--sans)}
+@media(min-width:761px){.hero h1{max-width:15ch}}
+#reviews{background:radial-gradient(ellipse 60% 45% at 12% 30%,rgba(46,100,175,.34),transparent)}
+#faq{background:radial-gradient(ellipse 55% 40% at 88% 50%,rgba(46,100,175,.26),transparent)}
