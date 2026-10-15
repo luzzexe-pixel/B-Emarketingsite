@@ -341,3 +341,22 @@ html.intro-go .i-name{animation:nameIn .7s ease 2.4s forwards}
   html.intro-go .i-box3d,html.intro-go .i-box,html.intro-go .i-shadow,html.intro-go .i-panel,html.intro-go .i-name{animation-delay:0s!important;animation-duration:.4s!important}
   .i-box3d{transform:none}
 }
+
+/* ---- intro: Higgsfield video mode (html.intro-vid). Tune timings with the --t-* variables ---- */
+.i-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform-origin:50% 50%;will-change:transform}
+.intro{--t-panel:4.4s;--t-name:5s;--vx:-14vw;--vy:0px;--vs:1.18}
+html.intro-vid .i-video{opacity:1}
+html.intro-vid .i-box{display:none}
+html.intro-vid.intro-go .i-video{animation:vidShift .9s cubic-bezier(.65,0,.2,1) var(--t-panel) forwards}
+html.intro-vid.intro-go .i-panel{animation-delay:calc(var(--t-panel) + .1s)}
+html.intro-vid.intro-go .i-name{animation-delay:var(--t-name)}
+@keyframes vidShift{to{transform:translate(var(--vx),var(--vy)) scale(var(--vs))}}
+@media(max-width:700px){.intro{--vx:0px;--vy:-16vh;--vs:1.05}}
+@media(prefers-reduced-motion:reduce){.i-video{display:none}}
+/* video mode layout: scale always exceeds the shift so the video never exposes its edge */
+.intro{--vx:-7vw;--vy:0px;--vs:1.16}
+html.intro-vid .intro{--px:20vw;--pw:min(25vw,320px)}
+@media(max-width:700px){
+  .intro{--vx:0px;--vy:-12vh;--vs:1.27}
+  html.intro-vid .intro{--px:0px;--py:26vh;--pw:min(46vw,200px)}
+}

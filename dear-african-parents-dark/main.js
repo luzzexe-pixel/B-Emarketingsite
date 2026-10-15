@@ -10,13 +10,31 @@
   const endIntro = () => {
     if (!root.classList.contains("intro-on")) return;
     root.classList.add("intro-out"); root.classList.remove("intro-on"); lock(false);
-    setTimeout(() => { root.classList.remove("intro-out", "intro-go"); intro && intro.remove(); }, 900);
+    setTimeout(() => { root.classList.remove("intro-out", "intro-go", "intro-vid"); intro && intro.remove(); }, 900);
   };
   if (intro && root.classList.contains("intro-on")) {
     lock(true);
     const img = intro.querySelector("img");
     const ready = img && img.decode ? Promise.race([img.decode().catch(() => {}), new Promise(r => setTimeout(r, 1200))]) : Promise.resolve();
-    ready.then(() => { root.classList.add("intro-go"); setTimeout(endIntro, reduce ? 1600 : 4300); });
+    const vid = $("#introVideo"), saver = navigator.connection && navigator.connection.saveData;
+    const tryVideo = () => new Promise(res => {
+      if (!vid || reduce || saver || !vid.dataset.src) return res(false);
+      let done = false; const fin = ok => { if (!done) { done = true; res(ok); } };
+      vid.addEventListener("canplaythrough", () => fin(true), { once: true });
+      vid.addEventListener("error", () => fin(false), { once: true });
+      setTimeout(() => fin(false), 3000);
+      vid.src = vid.dataset.src; vid.load();
+    });
+    Promise.all([ready, tryVideo()]).then(([, ok]) => {
+      if (ok) {
+        root.classList.add("intro-vid", "intro-go");
+        vid.play().catch(() => {});
+        setTimeout(endIntro, 6900);
+      } else {
+        if (vid) { vid.removeAttribute("src"); vid.load(); }
+        root.classList.add("intro-go"); setTimeout(endIntro, reduce ? 1600 : 4300);
+      }
+    });
   } else { lock(false); if (intro) intro.remove(); }
 
   // ---- Sample cards (edit freely) ----
