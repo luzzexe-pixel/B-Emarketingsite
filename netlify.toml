@@ -1,0 +1,9 @@
+# Netlify build settings for B&E Marketing (static site, no framework).
+# Only the public site files are copied into dist/, so .claude/, scripts/ and
+# other repo tooling are never published.
+[build]
+  command = "mkdir -p dist && cp -r index.html privacy.html robots.txt sitemap.xml _headers css js assets dist/"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
