@@ -313,6 +313,7 @@ form.qf { padding: clamp(1.4rem, 4vw, 2.3rem); background: var(--white); color: 
 .hours dd { margin: 0; color: var(--white); }
 .foot__links li + li { margin-top: .4rem; }
 .foot__bot { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, .14); display: flex; flex-wrap: wrap; justify-content: space-between; gap: .6rem 2rem; font-size: .88rem; }
+.foot__note { margin-top: 1rem; font-size: .82rem; color: #9AA1AE; }
 @media (min-width: 800px) { .foot__grid { grid-template-columns: 1.3fr 1fr 1fr; } }
 
 /* Sticky mobile action bar */
