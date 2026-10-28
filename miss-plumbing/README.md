@@ -40,8 +40,18 @@ and her on-screen captions and logo stay in. The pairs, with the original start 
 | Bath replacement | `bath-swap-original.mp4` | 0.2 s (5.6 s) | 8 s (4 s) |
 
 The bath-swap "after" is her own caption: bath and panels in, siliconing still to do the next day. The hero video
-above is separate (graded cuts of the finished footage), and the "Our work" slider below the hero still uses placeholder
+above is separate (see "Hero video provenance" below), and the "Our work" slider below the hero still uses placeholder
 illustrations until real photos are added.
+
+## Hero video provenance
+
+The hero is an AI recreation, not footage of her jobs. Each shot was generated in Higgsfield (Kling v3.0, pro, 8 s,
+16:9, no audio, image-to-video) from a still of a finished scene in her clips (taken from the originals with a plain
+crop clear of her logo): wall-mounted taps over the vessel basin, the tall brass tap and basin, the glass shower with
+lit niche, and the brass handset and valves. Five clips were generated (plus two retries for invented lettering on
+the basin and an invented shower riser). The basin's printed brand mark was removed frame by frame, and a light grade,
+glow, grain and drifting dust were added. The four best are crossfaded into a 12.2 s loop. The real before/after
+footage is in the Real jobs section.
 
 ## Brand
 
