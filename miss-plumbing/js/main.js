@@ -21,7 +21,6 @@
 
   /* Animated counters (final value is already in the HTML for no-JS / reduced motion) */
   const fmt = (n, dec) => dec ? n.toFixed(dec) : Math.round(n).toLocaleString('en-GB');
-  const counters = $$('.count');
   if ('IntersectionObserver' in window && !reduce) {
     const co = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -37,12 +36,11 @@
         requestAnimationFrame(tick);
       });
     }, { threshold: 0.6 });
-    counters.forEach(el => co.observe(el));
+    $$('.count').forEach(el => co.observe(el));
   }
 
-  /* Header background + sticky action bar */
-  const hdr = $('#hdr'), bar = $('#bar'), hero = $('#top');
-  const ctaRow = $('.cta-row');
+  /* Header shadow + sticky mobile action bar */
+  const hdr = $('#hdr'), bar = $('#bar'), ctaRow = $('.cta-row');
   const onScroll = () => hdr && hdr.classList.toggle('is-solid', scrollY > 40);
   onScroll();
   addEventListener('scroll', onScroll, { passive: true });
@@ -50,6 +48,23 @@
     new IntersectionObserver(([e]) => bar.classList.toggle('is-on', !e.isIntersecting)).observe(ctaRow);
   } else if (bar) {
     bar.classList.add('is-on');
+  }
+
+  /* Sticky section menu: highlight the section in view */
+  const nav = $('#nav');
+  if (nav && 'IntersectionObserver' in window) {
+    const links = $$('a[href^="#"]', nav);
+    const map = new Map(links.map(a => [a.getAttribute('href').slice(1), a]));
+    const spy = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        const link = map.get(e.target.id);
+        if (!link || !e.isIntersecting) return;
+        links.forEach(a => a.removeAttribute('aria-current'));
+        link.setAttribute('aria-current', 'true');
+        if (nav.scrollWidth > nav.clientWidth) nav.scrollTo({ left: link.offsetLeft - 24, behavior: reduce ? 'auto' : 'smooth' });
+      });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    map.forEach((_, id) => { const sec = document.getElementById(id); if (sec) spy.observe(sec); });
   }
 
   /* "Open now" (Europe/London, 8am to 8pm daily) */
@@ -61,6 +76,47 @@
     } catch (_) { /* keep static text */ }
   }
 
+  /* Hero background video. Starts after page load; skipped for reduced motion, Data Saver and slow connections.
+     Clips are set in the data-* attributes on #hero-video (see README). Until then the poster image shows. */
+  const vid = $('#hero-video'), pauseBtn = $('#hero-pause'), heroEl = $('#top');
+  if (vid && !reduce) {
+    const conn = navigator.connection || {};
+    const slow = conn.saveData || /(^|-)2g$/.test(conn.effectiveType || '');
+    const small = matchMedia('(max-width: 767px)').matches;
+    const mp4 = (small && vid.dataset.mp4Mobile) || vid.dataset.mp4;
+    const webm = !small && vid.dataset.webm && vid.canPlayType('video/webm; codecs="vp9"') ? vid.dataset.webm : '';
+    if (!slow && (mp4 || webm)) {
+      let userPaused = false, inView = true;
+      const setLabel = () => {
+        const paused = vid.paused;
+        pauseBtn.setAttribute('aria-pressed', String(paused));
+        $('span', pauseBtn).textContent = paused ? 'Play video' : 'Pause video';
+        $('use', pauseBtn).setAttribute('href', paused ? '#i-play' : '#i-pause');
+      };
+      const start = () => {
+        [webm, mp4].filter(Boolean).forEach(src => {
+          const s = document.createElement('source');
+          s.src = src; s.type = src.endsWith('.webm') ? 'video/webm' : 'video/mp4';
+          vid.appendChild(s);
+        });
+        vid.addEventListener('playing', () => { vid.classList.add('is-playing'); pauseBtn.hidden = false; setLabel(); }, { once: true });
+        vid.addEventListener('error', () => vid.remove(), { capture: true, once: true });
+        vid.load();
+        vid.play().catch(() => { /* autoplay refused: poster stays */ });
+      };
+      pauseBtn.addEventListener('click', () => {
+        userPaused = !vid.paused;
+        if (userPaused) vid.pause(); else vid.play().catch(() => {});
+        setLabel();
+      });
+      const sync = () => { if (userPaused || !vid.classList.contains('is-playing')) return; (inView && !document.hidden) ? vid.play().catch(() => {}) : vid.pause(); };
+      if ('IntersectionObserver' in window) new IntersectionObserver(([e]) => { inView = e.isIntersecting; sync(); }).observe(heroEl);
+      document.addEventListener('visibilitychange', sync);
+      const go = () => ('requestIdleCallback' in window ? requestIdleCallback(start, { timeout: 2500 }) : setTimeout(start, 600));
+      document.readyState === 'complete' ? go() : addEventListener('load', go, { once: true });
+    }
+  }
+
   /* Before / after sliders (transform-driven) */
   $$('[data-ba]').forEach(ba => {
     const input = $('input', ba);
@@ -69,7 +125,14 @@
     set();
   });
 
-  /* Tap ripple on primary buttons */
+  /* "Request a quote" buttons pre-select the service in the form, then the link scrolls to it */
+  const svc = $('#f-service');
+  document.addEventListener('click', e => {
+    const a = e.target.closest('[data-service]');
+    if (a && svc) svc.value = a.dataset.service;
+  });
+
+  /* Tap ripple on buttons */
   if (!reduce) {
     document.addEventListener('pointerdown', e => {
       const btn = e.target.closest('[data-ripple]');
@@ -98,7 +161,7 @@
       btn.disabled = true; btn.textContent = 'Sending…';
       try {
         if (form.action.includes('YOUR_FORM_ID')) {
-          const text = `Hi Claire, quote request from ${data.get('name')} (${data.get('phone')}), ${String(data.get('postcode')).toUpperCase()}: ${data.get('issue')}`;
+          const text = `Hi Claire, quote request from ${data.get('name')} (${data.get('phone')}), ${String(data.get('postcode')).toUpperCase()}. Service: ${data.get('service')}. ${data.get('issue')}`;
           window.open('https://wa.me/447921138879?text=' + encodeURIComponent(text), '_blank', 'noopener');
           say('Thanks! WhatsApp is opening with your details. Just press send.');
         } else {

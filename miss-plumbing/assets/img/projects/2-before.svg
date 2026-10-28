@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="800" height="600" role="img" aria-label="Before placeholder">
-<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#707579"/><stop offset="1" stop-color="#3c4146"/></linearGradient>
-<pattern id="p" width="80" height="80" patternUnits="userSpaceOnUse"><path d="M80 0H0V80" fill="none" stroke="#F3EBDD" stroke-opacity=".08" stroke-width="2"/></pattern></defs>
-<rect width="800" height="600" fill="url(#g)"/><rect width="800" height="600" fill="url(#p)"/>
-<g fill="none" stroke="#8b8f93" stroke-width="18" stroke-linecap="round"><path d="M610 -10V240q0 50-50 50H330"/><path d="M330 290v90" stroke="#777"/></g>
-<text x="36" y="80" text-anchor="start" font-family="Georgia,serif" font-size="46" fill="#F3EBDD">BEFORE</text>
-<text x="36" y="112" text-anchor="start" font-family="Arial,sans-serif" font-size="22" fill="#C9C2B4">swap in your photo</text></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800" role="img" aria-label="Before placeholder">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7b858c"/><stop offset="1" stop-color="#3d444a"/></linearGradient>
+<pattern id="p" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M100 0H0V100" fill="none" stroke="#ffffff" stroke-opacity=".07" stroke-width="2"/></pattern></defs>
+<rect width="1200" height="800" fill="url(#g)"/><rect width="1200" height="800" fill="url(#p)"/>
+<g fill="none" stroke-linecap="round"><path d="M880 -10V300q0 60-60 60H520" stroke="#8b9399" stroke-width="34"/><path d="M520 360v130" stroke="#6f777d" stroke-width="34"/></g>
+<text x="48" y="110" font-family="Georgia,serif" font-size="64" font-style="italic" fill="#ffffff">Before</text>
+<text x="48" y="156" font-family="Arial,sans-serif" font-size="26" fill="#d9dee2">Shower installation · swap in your photo</text></svg>

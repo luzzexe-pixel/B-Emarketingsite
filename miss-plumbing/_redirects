@@ -1,0 +1,29 @@
+# Netlify redirects: old and section-style addresses all land on the one-page site.
+# (Applies when miss-plumbing/ is the Netlify publish directory.)
+/index.html           /               301
+/home                 /               301
+/services             /#services      301
+/services/*           /#services      301
+/pricing              /#free-quotes   301
+/prices               /#free-quotes   301
+/our-work             /#work          301
+/work                 /#work          301
+/projects             /#work          301
+/gallery              /#work          301
+/reviews              /#reviews       301
+/testimonials         /#reviews       301
+/faq                  /#faq           301
+/faqs                 /#faq           301
+/about                /#trust         301
+/about-us             /#trust         301
+/areas                /#area          301
+/service-area         /#area          301
+/emergency            /#emergency     301
+/emergency-plumber    /#emergency     301
+/contact              /#quote         301
+/contact-us           /#quote         301
+/quote                /#quote         301
+/get-a-quote          /#quote         301
+/request-a-quote      /#quote         301
+/privacy              /privacy.html   301
+/privacy-policy       /privacy.html   301
