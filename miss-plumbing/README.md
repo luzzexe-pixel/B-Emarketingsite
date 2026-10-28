@@ -12,6 +12,9 @@ sitemap.xml       Home page only (privacy is noindex)
 robots.txt
 assets/           Logo (pink + light versions), favicon, hero poster, OG image, project placeholders
 assets/video/     Hero background video: hero.webm, hero.mp4, hero-mobile.mp4
+assets/video/real/       Before / after cuts of Claire's real clips (480x854, muted, used by the Real jobs section)
+assets/video/originals/  Her three original phone clips, untouched (with audio and her logo)
+assets/img/real/         Poster frames for the real-job clips
 ```
 
 ## Pages and sections
@@ -23,6 +26,22 @@ nothing needed merging. The site now has a sticky section menu, redirects for se
 services, free quotes, how we work, our work (before/after), reviews, trust badges, service area, FAQ,
 quote form, footer, and the mobile call/WhatsApp bar. The sticky menu jumps to Services, Our work, Reviews,
 FAQ and Get a quote, and highlights the section in view.
+
+## Real jobs section (before / after)
+
+`#real-work` sits under "Our work" and shows three before/after pairs cut straight from Claire's own phone clips
+(`assets/video/originals/`). They are trimmed, scaled and compressed only: no grading, stabilising or logo removal,
+and her on-screen captions and logo stay in. The pairs, with the original start times used:
+
+| Pair | Original | Before | After |
+|---|---|---|---|
+| Bathroom refit | `bathroom-1-original.mp4` | 0.2 s (4.3 s) | 26.7 s (9.8 s) |
+| Full bathroom install | `bathroom-2-original.mp4` | 0.2 s (9.3 s) | 12 s (12 s) |
+| Bath replacement | `bath-swap-original.mp4` | 0.2 s (5.6 s) | 8 s (4 s) |
+
+The bath-swap "after" is her own caption: bath and panels in, siliconing still to do the next day. The hero video
+above is separate (graded cuts of the finished footage), and the "Our work" slider below the hero still uses placeholder
+illustrations until real photos are added.
 
 ## Brand
 
