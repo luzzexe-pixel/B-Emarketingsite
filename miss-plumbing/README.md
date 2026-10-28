@@ -11,7 +11,7 @@ _redirects        Netlify 301s from old / section-style addresses to the one pag
 sitemap.xml       Home page only (privacy is noindex)
 robots.txt
 assets/           Logo (pink + light versions), favicon, hero poster, OG image, project placeholders
-assets/video/     Hero background clips go here (empty until the clips are uploaded)
+assets/video/     Hero background video: hero.webm, hero.mp4, hero-mobile.mp4
 ```
 
 ## Pages and sections

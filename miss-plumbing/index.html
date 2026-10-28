@@ -118,14 +118,14 @@
   </header>
 
   <main id="main">
-    <!-- HERO: full-screen background video (add clips in assets/video, see README) over the poster image -->
+    <!-- HERO: full-screen background video (assets/video, see README) over the poster image -->
     <section class="hero on-dark" id="top" aria-labelledby="h1">
       <div class="hero__media" id="hero-media">
         <picture>
           <source media="(max-width: 767px)" srcset="assets/img/hero-poster-mobile.jpg">
           <img src="assets/img/hero-poster.jpg" width="1600" height="900" alt="" fetchpriority="high" decoding="async">
         </picture>
-        <video id="hero-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-webm="" data-mp4="" data-mp4-mobile=""></video>
+        <video id="hero-video" muted loop playsinline preload="none" tabindex="-1" aria-hidden="true" data-webm="assets/video/hero.webm" data-mp4="assets/video/hero.mp4" data-mp4-mobile="assets/video/hero-mobile.mp4"></video>
       </div>
       <div class="wrap">
         <div class="hero__copy">
