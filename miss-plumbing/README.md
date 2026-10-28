@@ -6,11 +6,11 @@ Static HTML/CSS/JS, no build step. Preview with `npx http-server .` from this fo
 index.html        The one scrolling page: every section, local-business schema, meta tags
 privacy.html      Placeholder privacy policy (the only other page; noindex)
 css/styles.css    All styles. Brand colours and fonts are tokens at the top (:root)
-js/main.js        Hero video, reveals, counters, section menu, sliders, quote form
+js/main.js        Hero video, reveals, counters, section menu, quote form
 _redirects        Netlify 301s from old / section-style addresses to the one page
 sitemap.xml       Home page only (privacy is noindex)
 robots.txt
-assets/           Logo (pink + light versions), favicon, hero poster, OG image, project placeholders
+assets/           Logo (pink + light versions), favicon, hero poster, OG image
 assets/video/     Hero background video: hero.webm, hero.mp4, hero-mobile.mp4
 assets/video/real/       Before / after cuts of Claire's real clips (480x854, muted, used by the Real jobs section)
 assets/video/originals/  Her three original phone clips, untouched (with audio and her logo)
@@ -23,13 +23,13 @@ assets/img/real/         Poster frames for the real-job clips
 nothing needed merging. The site now has a sticky section menu, redirects for section-style old addresses and a sitemap.
 
 **Sections on `index.html`, in order:** header + sticky menu, hero (background video, stats), emergency strip,
-services, free quotes, how we work, our work (before/after), reviews, trust badges, service area, FAQ,
+services, free quotes, how we work, our work (real before/after clips), reviews, trust badges, service area, FAQ,
 quote form, footer, and the mobile call/WhatsApp bar. The sticky menu jumps to Services, Our work, Reviews,
 FAQ and Get a quote, and highlights the section in view.
 
 ## Real jobs section (before / after)
 
-`#real-work` sits under "Our work" and shows three before/after pairs cut straight from Claire's own phone clips
+`#real-work` is the "Our work" section (the nav and footer "Our work" links go to it; the old placeholder slider is gone) and shows three before/after pairs cut straight from Claire's own phone clips
 (`assets/video/originals/`). They are trimmed, scaled and compressed only: no grading, stabilising or logo removal,
 and her on-screen captions and logo stay in. The pairs, with the original start times used:
 
@@ -40,8 +40,7 @@ and her on-screen captions and logo stay in. The pairs, with the original start 
 | Bath replacement | `bath-swap-original.mp4` | 0.2 s (5.6 s) | 8 s (4 s) |
 
 The bath-swap "after" is her own caption: bath and panels in, siliconing still to do the next day. The hero video
-above is separate (see "Hero video provenance" below), and the "Our work" slider below the hero still uses placeholder
-illustrations until real photos are added.
+above is separate (see "Hero video provenance" below).
 
 ## Hero video provenance
 
@@ -107,7 +106,6 @@ the site lives at `/miss-plumbing/`, so the redirects take effect at launch.
 |---|---|
 | Real logo and van branding | `assets/logo.svg`, `assets/logo-light.svg` (stand-ins) |
 | Hero video clips and poster | `assets/video/`, `assets/img/hero-poster*.jpg` |
-| Before/after photos | `assets/img/projects/*.svg`: replace with real 3:2 photos and update the `src` |
 | Domain (`missplumbing.co.uk` is a guess) | canonical, og:url, og:image, JSON-LD in `index.html`; `sitemap.xml`; `robots.txt`; `og-image.jpg` |
 | Gas Safe registration number (`000000`) | Trust badges section |
 | Guarantee length (`12 months`) | Trust badges section |

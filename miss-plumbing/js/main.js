@@ -117,14 +117,6 @@
     }
   }
 
-  /* Before / after sliders (transform-driven) */
-  $$('[data-ba]').forEach(ba => {
-    const input = $('input', ba);
-    const set = () => ba.style.setProperty('--p', input.value + '%');
-    input.addEventListener('input', set);
-    set();
-  });
-
   /* "Request a quote" buttons pre-select the service in the form, then the link scrolls to it */
   const svc = $('#f-service');
   document.addEventListener('click', e => {

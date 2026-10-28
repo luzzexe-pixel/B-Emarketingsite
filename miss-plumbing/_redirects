@@ -6,10 +6,10 @@
 /services/*           /#services      301
 /pricing              /#free-quotes   301
 /prices               /#free-quotes   301
-/our-work             /#work          301
-/work                 /#work          301
-/projects             /#work          301
-/gallery              /#work          301
+/our-work             /#real-work          301
+/work                 /#real-work          301
+/projects             /#real-work          301
+/gallery              /#real-work          301
 /reviews              /#reviews       301
 /testimonials         /#reviews       301
 /faq                  /#faq           301
