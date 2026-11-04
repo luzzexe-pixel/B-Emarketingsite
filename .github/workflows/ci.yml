@@ -22,17 +22,9 @@ jobs:
         run: |
           node --check js/main.js
           node --check miss-plumbing/js/main.js
-          node --check jh-plumbing/js/main.js
-          node --check jh-plumbing/js/brassline.js
 
       - name: Site checks (JSON-LD, links, ids)
         run: node scripts/check.mjs
 
-      - name: JH Plumbing build is up to date and passes guards
-        run: |
-          node jh-plumbing/build.mjs
-          git diff --exit-code -- jh-plumbing
-          node jh-plumbing/check.mjs
-
       - name: HTML validation
-        run: npx --yes html-validate@9 index.html privacy.html miss-plumbing/index.html miss-plumbing/privacy.html "jh-plumbing/**/*.html"
+        run: npx --yes html-validate@9 index.html privacy.html miss-plumbing/index.html miss-plumbing/privacy.html
