@@ -9,7 +9,14 @@ const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 const pages = [];
 const nb = html => html.split(/(<script[\s\S]*?<\/script>)/).map((c, i) => i % 2 ? c : c.replace(/ ?07980 309332/g, m => (m[0] === ' ' ? '&nbsp;' : '') + '07980&nbsp;309332')).join('');
-const write = (rel, html) => { html = nb(html); const f = path.join(ROOT, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, html); };
+// Paths are emitted document-relative so the site works from a domain root AND from a subfolder (e.g. a deploy preview at /jh-plumbing/).
+// 404.html is served at arbitrary depths by the host, so it keeps root-absolute paths.
+const relink = (rel, html) => {
+  if (rel === '404.html') return html;
+  const depth = rel.split('/').length - 1, prefix = depth ? '../'.repeat(depth) : './';
+  return html.split(/(<script(?![^>]*\bsrc=)[\s\S]*?<\/script>)/).map((c, i) => i % 2 ? c : c.replace(/\b(href|src|poster|srcset|data-mp4|data-webm|data-mp4-mobile)="\/(?!\/)([^"]*)"/g, (_, a, b) => `${a}="${prefix}${b}"`)).join('');
+};
+const write = (rel, html) => { html = relink(rel, nb(html)); const f = path.join(ROOT, rel); fs.mkdirSync(path.dirname(f), { recursive: true }); fs.writeFileSync(f, html); };
 const tel = `tel:${site.phoneTel}`;
 const wa = (text = 'Hi Jim, I would like a quote.') => `https://wa.me/${site.whatsapp}?text=${encodeURIComponent(text)}`;
 const gaTrack = (e) => `data-track="${e}"`;

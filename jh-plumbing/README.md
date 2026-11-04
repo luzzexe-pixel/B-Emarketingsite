@@ -1,7 +1,7 @@
 # JH Plumbing & Heating Gas Services: Romford
 
 "Midnight & Brass". A 37-page static site: no framework, no runtime dependencies, no build step needed to *host* it.
-Preview: `npx http-server jh-plumbing` (paths are root-relative, so serve this folder as the web root).
+Preview: `npx http-server jh-plumbing`. All paths are document-relative, so the site also works from a subfolder such as `/jh-plumbing/` on a deploy preview. `check.mjs` fails on any root-absolute path (the 404 page is exempt, since hosts serve it at any depth).
 
 ## How it is organised
 

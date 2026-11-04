@@ -8,6 +8,8 @@
   const $$ = (s, c = document) => [...c.querySelectorAll(s)];
   const store = { get: k => { try { return localStorage.getItem(k); } catch (_) { return null; } }, set: (k, v) => { try { localStorage.setItem(k, v); } catch (_) {} } };
   const track = (name, props) => { try { if (window.plausible) window.plausible(name, props ? { props } : undefined); } catch (_) {} };
+  /* Site base, worked out from this script's own URL, so links work from a domain root or a subfolder */
+  const BASE = (() => { try { return new URL('../', document.currentScript.src).pathname; } catch (_) { return '/'; } })();
   const body = document.body;
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
 
@@ -171,7 +173,7 @@
         if (form.action.includes('YOUR_FORM_ID')) { whatsapp(); return; }
         const res = await fetch(form.action, { method: 'POST', body: data, headers: { Accept: 'application/json' } });
         if (!res.ok) throw new Error(res.status);
-        form.reset(); done(); setTimeout(() => { if (location.pathname.startsWith('/quote')) location.href = '/thank-you/'; }, 3500);
+        form.reset(); done(); setTimeout(() => { if (location.pathname.includes('/quote/')) location.href = BASE + 'thank-you/'; }, 3500);
       } catch (_) { say('Sorry, that did not send. Opening WhatsApp instead so your details are not lost.', true); setTimeout(whatsapp, 900); }
       finally { btn.disabled = false; btn.textContent = label; }
     });
@@ -183,7 +185,7 @@
     const probs = JSON.parse(fdata.textContent), chips = $$('#finder-chips a'), card = $('#finder-card'), rooms = $$('.house a[data-room]');
     const show = i => {
       const p = probs[i]; $('#fc-title').textContent = p.label; $('#fc-likely').textContent = p.likely; $('#fc-check').textContent = p.check; $('#fc-speed').textContent = p.speed;
-      $('#fc-cta').href = '/quote/?service=' + p.service; card.hidden = false;
+      $('#fc-cta').href = BASE + 'quote/?service=' + p.service; card.hidden = false;
       chips.forEach((c, j) => c.toggleAttribute('aria-current', j === i)); chips[i].setAttribute('aria-current', 'true'); track('finder_select', { problem: p.label });
     };
     const room = r => { rooms.forEach(a => $('.room', a).classList.toggle('is-on', a.dataset.room === r)); chips.forEach((c, i) => { c.parentElement.hidden = !!r && probs[i].room !== r; }); };
@@ -218,16 +220,16 @@
     const out = $('#quiz-res'); out.hidden = false;
     if (a < 5) { out.textContent = 'Please answer all five questions.'; return; }
     const [t, p] = n <= 3 ? ['Repair looks sensible.', 'A fault on a fairly young, well-supported boiler is usually worth repairing.'] : n <= 6 ? ['It could go either way.', 'Jim can look at it and tell you honestly whether repairing or replacing makes more sense.'] : ['Replacing is worth a serious look.', 'Age, faults and running costs point towards a replacement. Jim will quote for both so you can compare.'];
-    out.innerHTML = `<b style="font:400 1.4rem var(--f-display)">${t}</b><p class="muted">${p}</p><a class="btn btn--brass" href="/quote/?service=boiler-repairs" data-ripple>Get a free quote</a>`; track('quiz_complete');
+    out.innerHTML = `<b style="font:400 1.4rem var(--f-display)">${t}</b><p class="muted">${p}</p><a class="btn btn--brass" href="' + BASE + 'quote/?service=boiler-repairs" data-ripple>Get a free quote</a>`; track('quiz_complete');
   });
 
   /* One gentle desktop exit-intent offer, shown once */
-  if (fine && !store.get('jh_exit') && !location.pathname.startsWith('/quote') && !location.pathname.startsWith('/emergency')) {
+  if (fine && !store.get('jh_exit') && !location.pathname.includes('/quote/') && !location.pathname.includes('/emergency/')) {
     let armed = false; setTimeout(() => { armed = true; }, 15000);
     document.addEventListener('mouseout', e => {
       if (!armed || e.clientY > 0 || e.relatedTarget || store.get('jh_exit')) return; store.set('jh_exit', '1');
       const d = document.createElement('div'); d.className = 'exit'; d.setAttribute('role', 'dialog'); d.setAttribute('aria-modal', 'true'); d.setAttribute('aria-labelledby', 'exit-h');
-      d.innerHTML = '<div class="exit__box"><h2 id="exit-h">Before you go: a free quote?</h2><p>No obligation. Tell us what’s wrong and we’ll reply within 30 minutes during opening hours.</p><p><a class="btn btn--brass" href="/quote/" data-ripple>Get a free quote</a></p><button class="btn btn--ghost" type="button" style="color:var(--porcelain)">No thanks</button></div>';
+      d.innerHTML = '<div class="exit__box"><h2 id="exit-h">Before you go: a free quote?</h2><p>No obligation. Tell us what’s wrong and we’ll reply within 30 minutes during opening hours.</p><p><a class="btn btn--brass" href="' + BASE + 'quote/" data-ripple>Get a free quote</a></p><button class="btn btn--ghost" type="button" style="color:var(--porcelain)">No thanks</button></div>';
       body.appendChild(d); const x = $('button', d); x.focus(); const close = () => d.remove(); x.addEventListener('click', close); d.addEventListener('click', ev => { if (ev.target === d) close(); }); addEventListener('keydown', ev => { if (ev.key === 'Escape') close(); }, { once: true });
     });
   }

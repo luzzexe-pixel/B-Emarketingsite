@@ -32,13 +32,15 @@ for (const f of pages) {
   if (/£/.test(html) || /&pound;/.test(html)) fail(`${label}: contains a price symbol (quote-led site)`);
   if (/priceRange/.test(html)) fail(`${label}: contains priceRange`);
   for (const re of placeholders) if (re.test(text)) fail(`${label}: placeholder text matches ${re}`);
-  // local refs
-  for (const [, ref] of [...html.matchAll(/(?:href|src|poster|srcset)="(\/[^"#?]*)/g)]) {
-    if (ref.startsWith('//')) continue;
-    let p = path.join(ROOT, ref); if (ref.endsWith('/')) p = path.join(p, 'index.html');
-    if (!fs.existsSync(p) && !fs.existsSync(p + '/index.html')) fail(`${label}: missing target "${ref}"`);
+  // local refs: must exist, and must be document-relative (so the site works from a subfolder preview). 404.html is exempt.
+  const dir = path.dirname(f), is404 = label === '404.html';
+  for (const [, ref0] of [...html.matchAll(/\b(?:href|src|poster|srcset|data-mp4|data-webm|data-mp4-mobile)="([^"#?]+)/g)]) {
+    if (/^(https?:|mailto:|tel:|data:|\/\/)/.test(ref0)) continue;
+    if (ref0.startsWith('/') && !is404) fail(`${label}: root-absolute path "${ref0}" (breaks when served from a subfolder)`);
+    let p = ref0.startsWith('/') ? path.join(ROOT, ref0) : path.resolve(dir, ref0);
+    if (ref0.endsWith('/')) p = path.join(p, 'index.html');
+    if (!fs.existsSync(p) && !fs.existsSync(path.join(p, 'index.html'))) fail(`${label}: missing target "${ref0}"`);
   }
-  for (const [, ref] of [...html.matchAll(/data-(?:mp4|webm|mp4-mobile)="(\/[^"]+)"/g)]) if (!fs.existsSync(path.join(ROOT, ref))) fail(`${label}: missing video "${ref}"`);
 }
 // CSS url() refs
 const css = fs.readFileSync(path.join(ROOT, 'css/styles.css'), 'utf8');
