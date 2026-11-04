@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /brand/
+Disallow: /thank-you/
+
+Sitemap: https://www.jh-plumbing.co.uk/sitemap.xml

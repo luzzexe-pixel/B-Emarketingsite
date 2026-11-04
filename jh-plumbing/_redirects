@@ -1,0 +1,10 @@
+# Netlify 301s from old addresses (applies when jh-plumbing/ is the publish directory).
+/index.html /  301
+/home /  301
+/all-aspects-of-gas-works /services/ 301
+/gas-services /services/boiler-servicing/ 301
+/contact /quote/ 301
+/contact-us /quote/ 301
+/reviews.html /reviews/ 301
+/about-us /about/ 301
+/privacy-policy /privacy/ 301
