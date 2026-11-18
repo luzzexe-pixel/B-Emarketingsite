@@ -144,32 +144,9 @@
           </a>
         </div>
       </div>
-      <a class="scroll-cue" href="#proof" aria-label="Scroll to content"><span></span></a>
+      <a class="scroll-cue" href="#services" aria-label="Scroll to content"><span></span></a>
     </section>
 
-    <!-- PROOF: counters + marquee -->
-    <section class="proof" id="proof" aria-label="Results at a glance">
-      <div class="wrap">
-        <!-- PLACEHOLDER STATS: replace with your real numbers -->
-        <ul class="stats" data-stagger>
-          <li data-reveal><strong><span data-count="150" data-suffix="+">150+</span></strong><span>websites launched for Essex &amp; London firms</span></li>
-          <li data-reveal><strong><span data-prefix="£" data-count="12" data-suffix="M+">£12M+</span></strong><span>in client revenue influenced</span></li>
-          <li data-reveal><strong><span data-count="3.8" data-decimals="1" data-suffix="x">3.8x</span></strong><span>average growth in monthly enquiries</span></li>
-          <li data-reveal><strong><span data-count="9">9</span></strong><span>years growing businesses from Romford</span></li>
-        </ul>
-      </div>
-      <div class="marquee" role="group" aria-label="Businesses we work with (placeholder names)">
-        <!-- PLACEHOLDER CLIENT NAMES: swap for real client names or logos -->
-        <div class="marquee__track">
-          <ul>
-            <li>Hornchurch Roofing Co.</li><li>Gidea Park Dental</li><li>Brentwood Kitchens</li><li>Essex Fit Studio</li><li>Upminster Legal</li><li>Ilford Print Works</li><li>Chadwell Heath Joinery</li><li>Havering Motors</li>
-          </ul>
-          <ul aria-hidden="true">
-            <li>Hornchurch Roofing Co.</li><li>Gidea Park Dental</li><li>Brentwood Kitchens</li><li>Essex Fit Studio</li><li>Upminster Legal</li><li>Ilford Print Works</li><li>Chadwell Heath Joinery</li><li>Havering Motors</li>
-          </ul>
-        </div>
-      </div>
-    </section>
 
     <!-- SERVICES -->
     <section class="section" id="services" aria-labelledby="services-title">
@@ -457,10 +434,10 @@
         </div>
 
         <!--
-          FORM ENDPOINT: replace YOUR_FORM_ID with your Formspree form ID (https://formspree.io).
-          Using Netlify instead? See README.md.
+          FORM: handled by Netlify Forms. Enquiries appear under Forms in the Netlify dashboard.
         -->
-        <form class="form card" id="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST" data-reveal novalidate>
+        <form class="form card" id="contact-form" name="contact" action="/" method="POST" data-netlify="true" netlify-honeypot="_gotcha" data-reveal novalidate>
+          <input type="hidden" name="form-name" value="contact">
           <div class="field">
             <label for="name">Your name</label>
             <input id="name" name="name" type="text" autocomplete="name" required>

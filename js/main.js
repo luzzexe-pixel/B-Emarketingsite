@@ -229,14 +229,10 @@
     form.addEventListener('submit', async e => {
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
-      if (form.action.includes('YOUR_FORM_ID')) {
-        say('Form not connected yet. Add your Formspree ID (see README) or email us directly.', 'is-err');
-        return;
-      }
       const btn = $('button[type="submit"]', form);
       btn.disabled = true; say('Sending…');
       try {
-        const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+        const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() });
         if (!res.ok) throw new Error(res.status);
         form.reset();
         say('Thanks, we’ve got your message and will reply within one working day.', 'is-ok');
