@@ -60,7 +60,7 @@ Everything below is **placeholder** and must be replaced before launch:
 - All 6 case studies and metrics, 3 testimonials
 - Package names and prices
 - Address (1 Placeholder Street, RM1 1AA), phone (01708 000 000), email, opening hours: update in the contact section, the footer, **and** the `LocalBusiness` JSON-LD in `<head>`
-- Domain `www.bemarketing.co.uk` in `<link rel="canonical">`, Open Graph tags, JSON-LD, `robots.txt` and `sitemap.xml`
+- Domain `www.bemarketing.uk.net` in `<link rel="canonical">`, Open Graph tags, JSON-LD, `robots.txt` and `sitemap.xml`
 - `privacy.html`: have it reviewed before going live
 
 ## 5. Cookie banner & analytics
