@@ -59,7 +59,7 @@ Everything below is **placeholder** and must be replaced before launch:
 - Stats (150+ sites, £12M+, 3.8x, 9 years), client names in the marquee
 - All 6 case studies and metrics, 3 testimonials
 - Package names and prices
-- Address (1 Placeholder Street, RM1 1AA), phone (01708 000 000), email, opening hours: update in the contact section, the footer, **and** the `LocalBusiness` JSON-LD in `<head>`
+- Contact details: only the postcode (RM3 9JT) is set, so add your full street address if you want it shown. Email is `info@bemarketing.uk.net`. Update the contact section **and** the `LocalBusiness` JSON-LD in `<head>`
 - Domain `www.bemarketing.co.uk` in `<link rel="canonical">`, Open Graph tags, JSON-LD, `robots.txt` and `sitemap.xml`
 - `privacy.html`: have it reviewed before going live
 

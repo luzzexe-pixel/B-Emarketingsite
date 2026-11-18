@@ -241,7 +241,7 @@
         form.reset();
         say('Thanks, we’ve got your message and will reply within one working day.', 'is-ok');
       } catch {
-        say('Sorry, something went wrong. Please try again or call us on 01708 000 000.', 'is-err');
+        say('Sorry, something went wrong. Please try again or email us at info@bemarketing.uk.net.', 'is-err');
       } finally { btn.disabled = false; }
     });
   }
