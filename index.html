@@ -434,10 +434,9 @@
         </div>
 
         <!--
-          FORM: handled by Netlify Forms. Enquiries appear under Forms in the Netlify dashboard.
+          FORM: sent by contact.php to info@bemarketing.uk.net.
         -->
-        <form class="form card" id="contact-form" name="contact" action="/" method="POST" data-netlify="true" netlify-honeypot="_gotcha" data-reveal novalidate>
-          <input type="hidden" name="form-name" value="contact">
+        <form class="form card" id="contact-form" action="contact.php" method="POST" data-reveal novalidate>
           <div class="field">
             <label for="name">Your name</label>
             <input id="name" name="name" type="text" autocomplete="name" required>

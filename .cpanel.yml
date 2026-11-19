@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/bemanlph/public_html/
+    - /bin/cp -R index.html privacy.html robots.txt sitemap.xml contact.php assets css js $DEPLOYPATH

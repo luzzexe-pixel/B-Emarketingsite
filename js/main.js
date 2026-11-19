@@ -232,7 +232,7 @@
       const btn = $('button[type="submit"]', form);
       btn.disabled = true; say('Sending…');
       try {
-        const res = await fetch('/', { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: new URLSearchParams(new FormData(form)).toString() });
+        const res = await fetch('contact.php', { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
         if (!res.ok) throw new Error(res.status);
         form.reset();
         say('Thanks, we’ve got your message and will reply within one working day.', 'is-ok');
